@@ -86,3 +86,17 @@ sudo apt-get install syslog-ng
     ```
     sudo systemctl status syslog-ng
     ```
+
+5. Open syslog file from both side (server & client) to see the generated logs
+    ```
+    sudo tail -f /var/log/syslog
+    ```
+
+6. Test send message from client to server
+    ```
+    logger Sending message to server is successful.
+    ```
+    OR
+    ```
+    logger -n SERVER_IP sending message to server is successful.
+    ```
