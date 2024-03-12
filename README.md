@@ -4,10 +4,15 @@
 ```
 sudo apt-get install syslog-ng
 ```
-2. Configuring Syslog-ng (Client Side)
+2. Configuring Syslog-ng (Server Side)
     - Copy the original configuration file for back up
     ```
     sudo cp /etc/syslog-ng/syslog-ng.conf /etc/syslog-ng/syslog-ng.conf.backup
+    ```
+    
+    - Open Syslog-ng configuration file
+    ```
+    sudo nano /etc/syslog-ng/syslog-ng.conf
     ```
 
     - Paste these at the bottom of the file
@@ -37,7 +42,23 @@ sudo apt-get install syslog-ng
     sudo systemctl status syslog-ng
     ```
 
-3. Configuring Syslog-ng (Client SIde)aaaa
+3. Get IP address for server side
+    - Copy IP address at `"inet YOUR_IP"` from `eth0` using this command
+    ```
+    ip address
+    ```
+
+4. Configuring Syslog-ng (Client Side)
+    - Copy the original configuration file for back up
+    ```
+    sudo cp /etc/syslog-ng/syslog-ng.conf /etc/syslog-ng/syslog-ng.conf.backup
+    ```
+
+    - Open Syslog-ng configuration file
+    ```
+    sudo nano /etc/syslog-ng/syslog-ng.conf
+    ```
+
     - Paste these at the bottom of the page
     ```
     source s_network {
@@ -46,11 +67,12 @@ sudo apt-get install syslog-ng
     };
 
     destination logserver {
-        network("192.168.93.129" port(514) transport(tcp));
+        network("SERVER_IP" port(514) transport(tcp));
     };
 
     destination d_logs {
-        file("/var/log/centralized/$HOST/$YEAR-$MONTH-$DAY.log" create_dirs(yes>};
+        file("/var/log/centralized/$HOST/$YEAR-$MONTH-$DAY.log" create_dirs(yes));
+    };
 
     log { source(s_network); destination(d_logs); };
     log { source(s_network); destination(logserver); };
