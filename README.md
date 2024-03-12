@@ -59,7 +59,7 @@ sudo apt-get install syslog-ng
     sudo nano /etc/syslog-ng/syslog-ng.conf
     ```
 
-    - Paste these at the bottom of the page
+    - Paste these at the bottom of the page and change `SERVER_IP` with your copy IP on step 3
     ```
     source s_network {
         syslog(ip(0.0.0.0) port(514) transport(udp));
