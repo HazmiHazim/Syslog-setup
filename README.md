@@ -29,7 +29,6 @@ sudo apt-get install syslog-ng
     log { source(s_network); destination(d_logs); };
     log { source(s_network); destination(d_syslog); };
     log { source(s_network); destination(d_messages); };
-
     ```
 
     - Restart Syslog-ng to apply changes
@@ -76,4 +75,14 @@ sudo apt-get install syslog-ng
 
     log { source(s_network); destination(d_logs); };
     log { source(s_network); destination(logserver); };
+    ```
+
+    - Restart Syslog-ng to apply changes
+    ```
+    sudo systemctl restart syslog-ng
+    ```
+
+    - Check if the syslog-ng is running (Optional)
+    ```
+    sudo systemctl status syslog-ng
     ```
