@@ -32,7 +32,7 @@ sudo apt-get install syslog-ng
     sudo systemctl restart syslog-ng
     ```
 
-    - Check if the syslog-ng is running(optional)
+    - Check if the syslog-ng is running (Optional)
     ```
     sudo systemctl status syslog-ng
     ```
